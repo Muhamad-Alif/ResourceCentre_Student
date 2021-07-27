@@ -48,7 +48,7 @@ public class ResourceCentre {
 				}
 
 			} else if (option == 3) {
-				// Loan item
+				// Loan an item
 				ResourceCentre.setHeader("LOAN");			
 				ResourceCentre.setHeader("ITEM TYPES");
 				System.out.println("1. Camcorder");
