@@ -100,7 +100,7 @@ public class ResourceCentreTest {
 		ResourceCentre.addChromebook(chromebookList, cb1);
 		ResourceCentre.addChromebook(chromebookList, cb2);
 
-		// Item list is not null, newly added item can be loaned out successfully.
+		// Item list is not null, newly added item can be loaned out successfully
 		assertNotNull("Test that list is not null", chromebookList);
 		assertTrue("Test if item can be loaned successfully",
 				ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "1/12/2020"));
