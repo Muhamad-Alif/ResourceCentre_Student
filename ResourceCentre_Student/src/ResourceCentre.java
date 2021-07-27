@@ -153,8 +153,6 @@ public class ResourceCentre {
 
 	public static void viewAllChromebook(ArrayList<Chromebook> chromebookList) {
 
-		String output = retrieveAllChromebook(chromebookList);
-		System.out.println(output);
 	}
 
 	// ================================= Option 2 Add an item (CRUD - Create)
@@ -220,25 +218,26 @@ public class ResourceCentre {
 
 	public static boolean doLoanChromebook(ArrayList<Chromebook> chromebookList, String tag, String dueDate) {
 		// write your code here
-		boolean isLoaned = false;
-		for (int i = 0; i < chromebookList.size(); i++) {
-			if (tag.equalsIgnoreCase(chromebookList.get(i).getAssetTag())
-					&& chromebookList.get(i).getIsAvailable() == true) {
+        boolean isLoaned = false;
 
-				chromebookList.get(i).setIsAvailable(false);
-				chromebookList.get(i).setDueDate(dueDate);
+        for (int i = 0; i < chromebookList.size(); i++) {
+            if (tag.equalsIgnoreCase(chromebookList.get(i).getAssetTag())
+                    && chromebookList.get(i).getIsAvailable() == true) {
 
-				isLoaned = true;
+                chromebookList.get(i).setIsAvailable(false);
+                chromebookList.get(i).setDueDate(dueDate);
 
-			}
-		}
+                isLoaned = true;
+
+            }
+        }
 
 		return isLoaned;
 
 	}
 
 	public static void loanChromebook(ArrayList<Chromebook> chromebookList) {
-		// write your code here.
+		// write your code here
 		ResourceCentre.viewAllChromebook(chromebookList);
 		String tag = Helper.readString("Enter asset tag > ");
 		String due = Helper.readString("Enter due date > ");

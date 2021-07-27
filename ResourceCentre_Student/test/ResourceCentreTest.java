@@ -100,27 +100,27 @@ public class ResourceCentreTest {
 		ResourceCentre.addChromebook(chromebookList, cb1);
 		ResourceCentre.addChromebook(chromebookList, cb2);
 
-		// Item list is not null, newly added item can be loaned out successfully
+		// Item list is not null, newly added item can be loaned out successfully.
 		assertNotNull("Test that list is not null", chromebookList);
 		assertTrue("Test if item can be loaned successfully",
-				ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "1/12/2020"));
+				ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "01/01/2010"));
 
 		// Item availability is false, when item is loaned out.
 		assertFalse("Test that itemAvailability is false when loaned out", cb1.getIsAvailable());
 
 		// After item is loaned out, it cannot be loaned again.
 		assertFalse("Test that item cannot be loaned once loaned out",
-				ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "1/12/2020"));
+				ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "01/01/2010"));
 
 		// Another item in the list can be loaned out successfully.
 		assertTrue("Test that item can be loaned out successfully",
-				ResourceCentre.doLoanChromebook(chromebookList, "CB0012", "1/12/2020"));
+				ResourceCentre.doLoanChromebook(chromebookList, "CB0012", "01/01/2010"));
 		assertFalse("Test that itemAvailability is false when loaned out", cb2.getIsAvailable());
 
 		// Item can be loaned out again when returned.
 		assertTrue("Return item.", ResourceCentre.doReturnChromebook(chromebookList, "CB0011"));
 		assertTrue("Test that item can be loaned again when returned.",
-				ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "1/12/2020"));
+				ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "01/01/2010"));
 	}
 
 	@Test
