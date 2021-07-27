@@ -53,7 +53,6 @@ public class ResourceCentreTest {
 		// fail("Not yet implemented");
 		// write your code here
 		
-		
 		assertNotNull("Test if there is valid Chromebook arraylist to add to", chromebookList);
 		
 		//Given an empty list, after adding 1 item, the size of the list is 1
@@ -119,8 +118,10 @@ public class ResourceCentreTest {
                 ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "01/06/2020"));
         
         //test case 3 (non-existent item)
-        assertTrue("Test that item that does not exist can be loaned out successfully",
+        assertFalse("Test that item that does not exist can be loaned out successfully",
                 ResourceCentre.doLoanCamcorder(camcorderList, "CC0013", "01/06/2020"));
+        
+        assertFalse("Test that itemAvailability is false when non-existent", ResourceCentre.addCamcorder(camcorderList, cc3));
         
         //test case 4
         assertTrue("Return item.", ResourceCentre.doReturnCamcorder(camcorderList, "CC0011"));
