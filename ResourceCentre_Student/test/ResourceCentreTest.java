@@ -52,6 +52,8 @@ public class ResourceCentreTest {
 	public void testAddChromebook() {
 		// fail("Not yet implemented");
 		// write your code here
+		
+		
 		assertNotNull("Test if there is valid Chromebook arraylist to add to", chromebookList);
 		
 		//Given an empty list, after adding 1 item, the size of the list is 1
@@ -81,8 +83,7 @@ public class ResourceCentreTest {
 		ResourceCentre.addCamcorder(camcorderList, cc2);
 		assertEquals("Test if that Camcorder arraylist size is 2?", 2, camcorderList.size());
 
-		// test if the expected output string same as the list of camcorders retrieved
-		// from the SourceCentre
+		// test if the expected output string same as the list of camcorders retrieved from the SourceCentre
 		allCamcorder = ResourceCentre.retrieveAllCamcorder(camcorderList);
 
 		testOutput = String.format("%-10s %-30s %-10s %-10s %-20d\n", "CC0011", "Nikon HDSLR", "Yes", "", 40);
@@ -102,23 +103,26 @@ public class ResourceCentreTest {
 	public void testDoLoanCamcorder() {
 		// fail("Not yet implemented");
 		// write your code here
+		assertNotNull("Test that list is not null", camcorderList);
+		
 		ResourceCentre.addCamcorder(camcorderList, cc1);
         ResourceCentre.addCamcorder(camcorderList, cc2);
 
-        assertNotNull("Test that list is not null", camcorderList);
-
+        //test case 1
         assertTrue("Test if item can be loaned successfully",
                 ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "01/06/2020"));
-
+        
         assertFalse("Test that itemAvailability is false when loaned out", cc1.getIsAvailable());
-
+        
+        //test case 2
         assertFalse("Test that item cannot be loaned once loaned out",
                 ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "01/06/2020"));
-
-        assertTrue("Test that item can be loaned out successfully",
-                ResourceCentre.doLoanCamcorder(camcorderList, "CC0012", "01/06/2020"));
-        assertFalse("Test that itemAvailability is false when loaned out", cc2.getIsAvailable());
-
+        
+        //test case 3 (non-existent item)
+        assertTrue("Test that item that does not exist can be loaned out successfully",
+                ResourceCentre.doLoanCamcorder(camcorderList, "CC0013", "01/06/2020"));
+        
+        //test case 4
         assertTrue("Return item.", ResourceCentre.doReturnCamcorder(camcorderList, "CC0011"));
         assertTrue("Test that item can be loaned again when returned.",
                 ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "01/06/2010"));
