@@ -52,6 +52,18 @@ public class ResourceCentreTest {
 	public void testAddChromebook() {
 		// fail("Not yet implemented");
 		// write your code here
+		assertNotNull("Test if there is valid Chromebook arraylist to add to", chromebookList);
+		
+		//Given an empty list, after adding 1 item, the size of the list is 1
+		ResourceCentre.addChromebook(chromebookList, cb1);
+		assertEquals("Test if that Chromebook arraylist size is 1?", 1, chromebookList.size());
+		
+		//The item just added is as same as the first item of the list
+		assertSame("Test that Chromebook is added same as 1st item of the list?", cc1, chromebookList.get(0));
+		
+		//Add another item. test The size of the list is 2?
+		ResourceCentre.addCamcorder(camcorderList, cc2);
+		assertEquals("Test that Chromebook arraylist size is 2?", 2, chromebookList.size());
 	}
 
 	@Test
@@ -121,6 +133,7 @@ public class ResourceCentreTest {
 		assertTrue("Return item.", ResourceCentre.doReturnChromebook(chromebookList, "CB0011"));
 		assertTrue("Test that item can be loaned again when returned.",
 				ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "01/01/2010"));
+
 	}
 
 	@Test
@@ -134,6 +147,24 @@ public class ResourceCentreTest {
 	public void testDoReturnChromebook() {
 		// fail("Not yet implemented");
 		// write your code here
+		
+		//boundary
+		assertNotNull("Check if there is valid chromebook arraylist to add to", chromebookList);
+		ResourceCentre.addChromebook(chromebookList, cb1);
+		
+		//error
+		Boolean isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB0011");
+		assertFalse("Check that available chromebook CB0011 is returned - false?", isReturned);
+		
+		//normal
+		ResourceCentre.addChromebook(chromebookList, cb2);
+		cb2.setIsAvailable(false);
+		isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB0012");
+		assertTrue("Check that loaned out chrombook CB0012 is returned - true", isReturned);
+		
+		//error
+		isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB0013");
+		assertFalse("Check that non-existing chromebook CB0013 is returned - false?", isReturned);
 	}
 
 	@After
