@@ -102,7 +102,26 @@ public class ResourceCentreTest {
 	public void testDoLoanCamcorder() {
 		// fail("Not yet implemented");
 		// write your code here
+		ResourceCentre.addCamcorder(camcorderList, cc1);
+        ResourceCentre.addCamcorder(camcorderList, cc2);
 
+        assertNotNull("Test that list is not null", camcorderList);
+
+        assertTrue("Test if item can be loaned successfully",
+                ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "01/06/2020"));
+
+        assertFalse("Test that itemAvailability is false when loaned out", cc1.getIsAvailable());
+
+        assertFalse("Test that item cannot be loaned once loaned out",
+                ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "01/06/2020"));
+
+        assertTrue("Test that item can be loaned out successfully",
+                ResourceCentre.doLoanCamcorder(camcorderList, "CC0012", "01/06/2020"));
+        assertFalse("Test that itemAvailability is false when loaned out", cc2.getIsAvailable());
+
+        assertTrue("Return item.", ResourceCentre.doReturnCamcorder(camcorderList, "CC0011"));
+        assertTrue("Test that item can be loaned again when returned.",
+                ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "01/06/2010"));
 	}
 
 	@Test
