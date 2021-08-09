@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+	import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,9 @@ public class ResourceCentreTest {
 
 		camcorderList = new ArrayList<Camcorder>();
 		chromebookList = new ArrayList<Chromebook>();
+		
+		camcorderList.add(cc1);
+		camcorderList.add(cc2);
 	}
 
 	@Test
